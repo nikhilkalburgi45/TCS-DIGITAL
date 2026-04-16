@@ -2,105 +2,72 @@
 
 Given an integer `n`, calculate the sum of all its digits.
 
----
-
-## Example
-
 ### Example 1
 
-**Input:**
+Input: `n = 1234`
 
-```
-1234
-```
+Output: `10`
 
-**Output:**
-
-```
-10
-```
-
----
+Explanation: `1 + 2 + 3 + 4 = 10`.
 
 ### Example 2
 
-**Input:**
+Input: `n = 0`
 
-```
-0
-```
+Output: `0`
 
-**Output:**
-
-```
-0
-```
-
----
+Explanation: The sum of digits of `0` is `0`.
 
 ### Example 3
 
-**Input:**
+Input: `n = -567`
 
-```
--567
-```
+Output: `18`
 
-**Output:**
+Explanation: We ignore the negative sign. `5 + 6 + 7 = 18`.
 
-```
-18
-```
+## Approach
 
----
+### Core Idea
 
-## Approach (How it Works)
+- Use `% 10` to get the last digit.
+- Add it to the sum.
+- Use `/ 10` to remove the last digit.
 
-### Core Idea:
+### Simple Steps
 
-- Extract last digit using `% 10`
-- Add it to sum
-- Remove last digit using `/ 10`
-- Repeat until number becomes `0`
+1. Read the value of `n`.
+2. If `n` is `0`, print `0`.
+3. Convert negative numbers to positive.
+4. Extract each digit and add it to the sum.
 
----
-
-### Step-by-step:
-
-1. Take input `n`
-2. Handle edge case when `n == 0`
-3. Convert negative number to positive
-4. Loop:
-   - `digit = n % 10`
-   - Add to sum
-   - `n = n / 10`
-
----
+## Code
 
 ```cpp
 #include <bits/stdc++.h>
 using namespace std;
 
 void addDigit(int n) {
-
-    // Edge case
+    // Special case: sum of digits of 0 is 0.
     if (n == 0) {
         cout << 0;
         return;
     }
 
-    // Prevent overflow issue (INT_MIN)
+    // Convert negative numbers to positive.
     long long num = abs((long long)n);
-
     int sum = 0;
 
-    // Calculate sum of digits
     while (num > 0) {
-        int lastDigit = num % 10; // Extract last digit
-        sum += lastDigit;         // Add to sum
-        num = num / 10;           // Remove last digit
+        // Extract the last digit and add it to the sum.
+        int lastDigit = num % 10;
+        sum += lastDigit;
+
+        // Remove the last digit.
+        num /= 10;
     }
 
+    // Print the final sum of digits.
     cout << sum;
 }
 
@@ -108,8 +75,8 @@ int main() {
     int n;
     cin >> n;
 
+    // Find and print the sum of digits.
     addDigit(n);
-
     return 0;
 }
 ```

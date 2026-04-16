@@ -2,101 +2,68 @@
 
 Given an integer `n`, count the total number of digits in it.
 
----
-
-## Example
-
 ### Example 1
 
-**Input:**
+Input: `n = 1234`
 
-```
-1234
-```
+Output: `4`
 
-**Output:**
-
-```
-4
-```
-
----
+Explanation: The number `1234` has 4 digits.
 
 ### Example 2
 
-**Input:**
+Input: `n = 0`
 
-```
-0
-```
+Output: `1`
 
-**Output:**
-
-```
-1
-```
-
----
+Explanation: The number `0` is considered a single-digit number.
 
 ### Example 3
 
-**Input:**
+Input: `n = -567`
 
-```
--567
-```
+Output: `3`
 
-**Output:**
+Explanation: We ignore the negative sign. The number `567` has 3 digits.
 
-```
-3
-```
+## Approach
 
----
+### Core Idea
 
-## Approach (How it Works)
+- Remove the last digit using `/ 10`.
+- Count how many times this can be done before the number becomes `0`.
 
-### Core Idea:
+### Simple Steps
 
-- Remove digits one by one using `/ 10`
-- Count how many times you can do that before number becomes `0`
+1. Read the value of `n`.
+2. If `n` is `0`, return `1`.
+3. Convert negative numbers to positive.
+4. Keep dividing by `10` and increase the count.
 
----
-
-### Step-by-step:
-
-1. Take input `n`
-2. Handle edge case when `n == 0`
-3. Convert negative to positive
-4. Loop:
-   - Remove last digit
-   - Increment count
-
----
+## Code
 
 ```cpp
 #include <bits/stdc++.h>
 using namespace std;
 
 void countDigits(int n) {
-
-    // Edge case: if number is 0
+    // Special case: 0 is a one-digit number.
     if (n == 0) {
         cout << 1;
         return;
     }
 
-    // Use long long to safely handle INT_MIN
+    // Use absolute value so negative numbers are handled correctly.
     long long num = abs((long long)n);
-
     int count = 0;
 
-    // Count digits
     while (num > 0) {
+        // One division by 10 removes one digit.
         count++;
-        num = num / 10;
+        num /= 10;
     }
 
+    // Print the total number of digits.
     cout << count;
 }
 
@@ -104,8 +71,8 @@ int main() {
     int n;
     cin >> n;
 
+    // Count and print the digits of n.
     countDigits(n);
-
     return 0;
 }
 ```

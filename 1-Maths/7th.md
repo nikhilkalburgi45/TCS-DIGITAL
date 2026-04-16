@@ -2,108 +2,90 @@
 
 Given an integer `n`, check whether it is an Armstrong number.
 
----
-
-## Example
-
 ### Example 1
 
-**Input:**
+Input: `n = 153`
 
-```
-153
-```
+Output: `1`
 
-**Output:**
-
-```
-1
-```
-
----
+Explanation: `1^3 + 5^3 + 3^3 = 153`, so it is an Armstrong number.
 
 ### Example 2
 
-**Input:**
+Input: `n = 123`
 
-```
-123
-```
+Output: `0`
 
-**Output:**
-
-```
-0
-```
-
----
+Explanation: `1^3 + 2^3 + 3^3 = 36`, which is not equal to `123`.
 
 ### Example 3
 
-**Input:**
+Input: `n = 9474`
 
-```
-9474
-```
+Output: `1`
 
-**Output:**
+Explanation: `9^4 + 4^4 + 7^4 + 4^4 = 9474`, so it is an Armstrong number.
 
-```
-1
-```
+## Approach
 
----
+### Core Idea
 
-## Approach (How it Works)
+- Count the number of digits.
+- Raise each digit to that power.
+- Add all values and compare with the original number.
 
-### Core Idea:
+### Simple Steps
 
-An **Armstrong number** is a number where:
+1. Read the value of `n`.
+2. If `n` is negative, return `false`.
+3. Count the digits in the number.
+4. Extract each digit and add `digit^count` to the sum.
+5. Compare the sum with the original number.
 
-> Sum of (each digit ^ total number of digits) == original number
-
----
-
-### Step-by-step:
-
-1. Take input `n`
-2. Store original number
-3. Count number of digits
-4. Extract each digit
-5. Raise digit to power of digit count
-6. Add all values
-7. Compare with original number
-8. Return true (1) or false (0)
-
----
-
-## Code (Correct & Generalized)
+## Code
 
 ```cpp
 #include <bits/stdc++.h>
-
 using namespace std;
 
 bool armstrong(int originalNumber) {
+    // Negative numbers are not Armstrong numbers here.
+    if (originalNumber < 0) return false;
 
-    int sum = 0;
-    int x = originalNumber;
-    while (x > 0) {
-        int lastDigit = x % 10;
-        sum = sum + (lastDigit * lastDigit * lastDigit);
-        x = x / 10;
+    int count = 0;
+    int temp = originalNumber;
 
+    // Handle 0 as a one-digit number.
+    if (temp == 0) count = 1;
+
+    // Count how many digits are in the number.
+    while (temp > 0) {
+        count++;
+        temp /= 10;
     }
 
-    return originalNumber == sum;
+    long long sum = 0;
+    temp = originalNumber;
 
+    while (temp > 0) {
+        // Raise each digit to the power of total digits and add it.
+        int lastDigit = temp % 10;
+        sum += (long long)round(pow(lastDigit, count));
+
+        // Move to the next digit.
+        temp /= 10;
+    }
+
+    // If the sum matches the original number, it is Armstrong.
+    return sum == originalNumber;
 }
 
 int main() {
-
     int n;
     cin >> n;
-    cout << armstrong(n);
 
+    // Print 1 for true and 0 for false.
+    cout << armstrong(n);
+    return 0;
 }
 ```
