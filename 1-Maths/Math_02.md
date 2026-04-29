@@ -40,7 +40,7 @@ Explanation: We ignore the negative sign. The number `567` has 3 digits.
 3. Convert negative numbers to positive.
 4. Keep dividing by `10` and increase the count.
 
-## Code
+## Code 1: Using Loop
 
 ```cpp
 #include <bits/stdc++.h>
@@ -65,6 +65,34 @@ void countDigits(int n) {
 
     // Print the total number of digits.
     cout << count;
+}
+
+int main() {
+    int n;
+    cin >> n;
+
+    // Count and print the digits of n.
+    countDigits(n);
+    return 0;
+}
+```
+
+## Code 2: Using String Conversion
+
+```cpp
+#include <bits/stdc++.h>
+using namespace std;
+
+void countDigits(int n) {
+    // Special case: 0 is a one-digit number.
+    if (n == 0) {
+        cout << 1;
+        return;
+    }
+
+    // Convert to string and get length.
+    string s = to_string(abs((long long)n));
+    cout << s.length();
 }
 
 int main() {

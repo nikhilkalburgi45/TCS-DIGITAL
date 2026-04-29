@@ -42,7 +42,7 @@ Explanation: We reverse the digits of `567` and then put the negative sign back.
 4. Build the reversed number digit by digit.
 5. Add the sign back at the end.
 
-## Code
+## Code 1: Using Loop
 
 ```cpp
 #include <bits/stdc++.h>
@@ -65,6 +65,36 @@ long long reverseNumber(int n) {
     }
 
     // Restore the sign for negative inputs.
+    return n < 0 ? -reverseNo : reverseNo;
+}
+
+int main() {
+    int n;
+    cin >> n;
+
+    // Print the reversed number.
+    cout << reverseNumber(n);
+    return 0;
+}
+```
+
+## Code 2: Using String
+
+```cpp
+#include <bits/stdc++.h>
+using namespace std;
+
+long long reverseNumber(int n) {
+    // Convert to string.
+    string s = to_string(abs((long long)n));
+
+    // Reverse the string.
+    reverse(s.begin(), s.end());
+
+    // Convert back to long long.
+    long long reverseNo = stoll(s);
+
+    // Restore the sign.
     return n < 0 ? -reverseNo : reverseNo;
 }
 

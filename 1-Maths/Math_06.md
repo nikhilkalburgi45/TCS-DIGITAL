@@ -40,7 +40,7 @@ Explanation: Negative numbers are not treated as palindromes here.
 3. Reverse the number.
 4. Compare the reversed number with the original number.
 
-## Code
+## Code 1: Using Reverse
 
 ```cpp
 #include <bits/stdc++.h>
@@ -62,6 +62,35 @@ bool isPalli(int originalNumber) {
 
     // If both numbers are same, it is a palindrome.
     return originalNumber == reverseNumber;
+}
+
+int main() {
+    int n;
+    cin >> n;
+
+    // Print 1 for true and 0 for false.
+    cout << isPalli(n);
+    return 0;
+}
+```
+
+## Code 2: Using String
+
+```cpp
+#include <bits/stdc++.h>
+using namespace std;
+
+bool isPalli(int n) {
+    // Negative numbers are not palindrome.
+    if (n < 0) return false;
+
+    // Convert to string.
+    string s = to_string(n);
+
+    // Check if string is palindrome.
+    string rev = s;
+    reverse(rev.begin(), rev.end());
+    return s == rev;
 }
 
 int main() {

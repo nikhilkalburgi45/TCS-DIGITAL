@@ -6,7 +6,6 @@ Given an integer `n`, extract and print all its digits one by one.
 
 Input: `n = 1234`
 
-Output: `4 3 2 1`
 
 Explanation: We keep taking the last digit of `1234`, so the digits are printed as `4 3 2 1`.
 

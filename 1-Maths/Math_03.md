@@ -41,7 +41,7 @@ Explanation: We ignore the negative sign. `5 + 6 + 7 = 18`.
 3. Convert negative numbers to positive.
 4. Extract each digit and add it to the sum.
 
-## Code
+## Code 1: Using Loop
 
 ```cpp
 #include <bits/stdc++.h>
@@ -68,6 +68,38 @@ void addDigit(int n) {
     }
 
     // Print the final sum of digits.
+    cout << sum;
+}
+
+int main() {
+    int n;
+    cin >> n;
+
+    // Find and print the sum of digits.
+    addDigit(n);
+    return 0;
+}
+```
+
+## Code 2: Using String Conversion
+
+```cpp
+#include <bits/stdc++.h>
+using namespace std;
+
+void addDigit(int n) {
+    // Special case: sum of digits of 0 is 0.
+    if (n == 0) {
+        cout << 0;
+        return;
+    }
+
+    // Convert to string and sum digits.
+    string s = to_string(abs((long long)n));
+    int sum = 0;
+    for (char c : s) {
+        sum += c - '0';
+    }
     cout << sum;
 }
 

@@ -33,7 +33,7 @@ Explanation: These are all the numbers that divide `10` without leaving a remain
 3. If `i` divides `n`, store both `i` and `n / i`.
 4. Sort the divisors and print them.
 
-## Code
+## Code 1: Using Vector and Sort
 
 ```cpp
 #include <bits/stdc++.h>

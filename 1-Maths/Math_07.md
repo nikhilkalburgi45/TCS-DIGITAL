@@ -42,7 +42,7 @@ Explanation: `9^4 + 4^4 + 7^4 + 4^4 = 9474`, so it is an Armstrong number.
 4. Extract each digit and add `digit^count` to the sum.
 5. Compare the sum with the original number.
 
-## Code
+## Code 1: Using Loop and Pow
 
 ```cpp
 #include <bits/stdc++.h>
@@ -78,6 +78,39 @@ bool armstrong(int originalNumber) {
 
     // If the sum matches the original number, it is Armstrong.
     return sum == originalNumber;
+}
+
+int main() {
+    int n;
+    cin >> n;
+
+    // Print 1 for true and 0 for false.
+    cout << armstrong(n);
+    return 0;
+}
+```
+
+## Code 2: Using String
+
+```cpp
+#include <bits/stdc++.h>
+using namespace std;
+
+bool armstrong(int n) {
+    // Negative numbers are not Armstrong numbers.
+    if (n < 0) return false;
+
+    // Convert to string.
+    string s = to_string(n);
+    int len = s.length();
+
+    long long sum = 0;
+    for (char c : s) {
+        int digit = c - '0';
+        sum += (long long)round(pow(digit, len));
+    }
+
+    return sum == n;
 }
 
 int main() {

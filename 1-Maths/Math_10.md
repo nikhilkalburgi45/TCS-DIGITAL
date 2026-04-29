@@ -1,60 +1,48 @@
-# Q10. Print All Prime Numbers up to `N`
+# Q10 Print All Prime Numbers up to `N`
 
 Given an integer `n`, print all prime numbers from `1` to `n`.
 
----
+### Example 1
 
-## Example 1
+Input: `n = 10`
 
-Input:
+Output: `2 3 5 7`
 
-```
-n = 10
-```
+Explanation: These are all prime numbers up to 10.
 
-Output:
+### Example 2
 
-```
-2 3 5 7
-```
+Input: `n = 1`
 
----
+Output: (no output)
 
-## Example 2
+Explanation: There are no primes up to 1.
 
-Input:
+### Example 3
 
-```
-n = 1
-```
+Input: `n = 20`
 
-Output:
+Output: `2 3 5 7 11 13 17 19`
 
-```
-(no output)
-```
+Explanation: All primes up to 20.
 
----
+## Approach 1: Using isPrime Helper
 
-# Approach 1: Naive / Reuse `isPrime`
-
-## Core Idea
+### Core Idea
 
 - For every number from `1` to `n`, check if it is prime using your helper function.
 - If yes → print it.
 
-## Simple Steps
+### Simple Steps
 
 1. Loop from `2` to `n`
 2. For each number, call `isPrime(i)`
 3. If true → print it
 
----
-
 ## Code 1
 
 ```cpp
-#include <bits/stdc++.h>
+#include<bits/stdc++.h>
 using namespace std;
 
 bool isPrime(int n) {
@@ -82,11 +70,9 @@ int main() {
 }
 ```
 
----
+## Approach 2: Optimal (Sieve of Eratosthenes)
 
-# Approach 2: Optimal (Sieve of Eratosthenes)
-
-## Core Idea
+### Core Idea
 
 Stop checking numbers individually.
 Instead:
@@ -94,44 +80,19 @@ Instead:
 - Assume all numbers are prime
 - Eliminate multiples
 
----
-
-## Insight
-
-If `p` is prime:
-
-- All multiples of `p` are NOT prime
-
-So instead of checking:
-
-```
-Is 9 prime?
-Is 15 prime?
-```
-
-You **eliminate them early**.
-
----
-
-## Simple Steps
+### Simple Steps
 
 1. Create array `prime[n+1]`, initialize all as `true`
 2. Mark `0` and `1` as `false`
 3. Start from `2`
 4. For every prime `i`, mark multiples as false:
-
-   ```
-   i*i, i*i+i, i*i+2i ...
-   ```
-
+   - `i*i, i*i+i, i*i+2i ...`
 5. Print all indices marked `true`
 
----
-
-## Code 2 (Optimal)
+## Code 2
 
 ```cpp
-#include <bits/stdc++.h>
+#include<bits/stdc++.h>
 using namespace std;
 
 int main() {
@@ -139,7 +100,6 @@ int main() {
     cin >> n;
 
     vector<bool> prime(n + 1, true);
-
     prime[0] = prime[1] = false;
 
     for (int i = 2; i * i <= n; i++) {

@@ -39,7 +39,7 @@ Explanation: We ignore the negative sign. `5 + 6 + 7 = 18`, then `1 + 8 = 9`.
 3. While the number has more than one digit, find the digit sum.
 4. Replace the number with that sum.
 
-## Code
+## Code 1: Using Loop
 
 ```cpp
 #include <bits/stdc++.h>
@@ -68,6 +68,33 @@ int singleDigit(int n) {
     }
 
     return (int)num;
+}
+
+int main() {
+    int n;
+    cin >> n;
+
+    // Print the final single-digit result.
+    cout << singleDigit(n);
+    return 0;
+}
+```
+
+## Code 2: Using Formula
+
+```cpp
+#include <bits/stdc++.h>
+using namespace std;
+
+int singleDigit(int n) {
+    // Convert negative numbers to positive first.
+    long long num = abs((long long)n);
+
+    // Special case for 0.
+    if (num == 0) return 0;
+
+    // Digital root formula.
+    return 1 + (num - 1) % 9;
 }
 
 int main() {
